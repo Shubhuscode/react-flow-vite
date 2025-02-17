@@ -1,10 +1,13 @@
+import React from 'react';
 import FlowEditor from './components/FlowEditor';
+import Navigation from './components/Navigation';
 
 const App = () => {
   return (
     <div className="App">
-      <h1>React Flow Example</h1>
-      <FlowEditor />
+      <Navigation/>
+      {/* <h1>Shubham React Flow App</h1> */}
+      {/* <FlowEditor /> */}
     </div>
   );
 };

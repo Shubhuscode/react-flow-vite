@@ -1,24 +1,30 @@
 import React from 'react';
-import { Handle, Position } from 'react-flow-renderer';
+import { Handle } from 'react-flow-renderer';
 
-const CustomNode = ({ data }: any) => {
+const CustomNode = ({ id, data, onDeleteNode }) => {
   return (
     <div className="custom-node">
       <div className="node-header">
-        <h3>{data.label}</h3>
+        <span>{data.label}</span>
+        {/* Delete button inside the header */}
+        <button onClick={() => onDeleteNode(id)} className="delete-btn">
+          X
+        </button>
       </div>
       <div className="node-content">
         <p>{data.description}</p>
       </div>
+
+      {/* Input/output handles (if needed) */}
       <Handle
         type="target"
-        position={Position.Top}
-        style={{ borderRadius: '50%', background: '#555' }}
+        position="top"
+        style={{ background: '#555' }}
       />
       <Handle
         type="source"
-        position={Position.Bottom}
-        style={{ borderRadius: '50%', background: '#555' }}
+        position="bottom"
+        style={{ background: '#555' }}
       />
     </div>
   );
