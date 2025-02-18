@@ -9,7 +9,9 @@ import { AppProvider, Navigation, Router } from '@toolpad/core/AppProvider';
 import { DashboardLayout } from '@toolpad/core/DashboardLayout';
 import { PageContainer } from '@toolpad/core/PageContainer';
 import Grid from '@mui/material/Grid2';
-import FlowEditor from './FlowEditor';  // Make sure to import FlowEditor
+import FlowEditor from './FlowEditor';  
+import { Add, CachedRounded, CardGiftcardOutlined } from '@mui/icons-material';
+import { CardContent } from '@mui/material';
 
 const NAVIGATION: Navigation = [
   {
@@ -17,43 +19,34 @@ const NAVIGATION: Navigation = [
     title: 'Main items',
   },
   {
-    segment: 'dashboard',
-    title: 'Work Flow',
+    segment: 'work-flow', 
+    title: 'Work Flow',   
     icon: <DashboardIcon />,
   },
+
   {
-    segment: 'orders',
-    title: 'Orders',
-    icon: <ShoppingCartIcon />,
-  },
-  {
-    kind: 'divider',    
+    kind: 'divider',
   },
   {
     kind: 'header',
     title: 'Analytics',
   },
   {
-    segment: 'reports',
-    title: 'Reports',
-    icon: <BarChartIcon />,
+    segment: 'cards',
+    title: 'Cards',
+    icon: <CachedRounded />,
     children: [
       {
-        segment: 'sales',
-        title: 'Sales',
-        icon: <DescriptionIcon />,
+        segment: 'add-node',
+        title: 'Add Node',
+        icon: <Add />,
       },
       {
-        segment: 'traffic',
-        title: 'Traffic',
+        segment: 'save',
+        title: 'Save',
         icon: <DescriptionIcon />,
       },
     ],
-  },
-  {
-    segment: 'integrations',
-    title: 'Integrations',
-    icon: <LayersIcon />,
   },
 ];
 
@@ -95,40 +88,29 @@ const Skeleton = styled('div')<{ height: number }>(({ theme, height }) => ({
 export default function DashboardLayoutBasic(props: any) {
   const { window } = props;
 
-  const router = useDemoRouter('/dashboard');
+  const router = useDemoRouter('/work-flow'); // Default path should be 'work-flow' now
 
   // Remove this const when copying and pasting into your project.
   const demoWindow = window ? window() : undefined;
 
   return (
     <AppProvider
-    navigation={NAVIGATION}
-    branding={{
-      logo: <img src="https://mui.com/static/logo.png" alt="MUI logo" />,
-      title: 'SG',
-      homeUrl: '/toolpad/core/introduction',
-    }}
-    router={router}
-    theme={demoTheme}
-    window={demoWindow}
-  >
-    
+      navigation={NAVIGATION}
+      branding={{
+        logo: <img src="https://mui.com/static/logo.png" alt="MUI logo" />,
+        title: 'SG',
+        homeUrl: '/toolpad/core/introduction',
+      }}
+      router={router}
+      theme={demoTheme}
+      window={demoWindow}
+    >
       <DashboardLayout>
         <PageContainer>
           <Grid container spacing={1}>
-            {/* <Grid size={12}>
-              <Skeleton height={14} />
-            </Grid> */}
-            {/* <Grid size={12}>
-              <Skeleton height={14} />
-            </Grid> */}
-            <Grid size={12}>
-              {/* FlowEditor added here */}
+            <Grid item xs={12}>
               <FlowEditor />
             </Grid>
-            {/* <Grid size={12}>
-              <Skeleton height={150} />
-            </Grid> */}
           </Grid>
         </PageContainer>
       </DashboardLayout>
